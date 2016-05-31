@@ -1,0 +1,66 @@
+---
+- name: install cryptsetup
+  become: yes
+  apt:
+    name=cryptsetup
+    state=present
+    update_cache=yes
+    cache_valid_time=3600
+
+- name: install samba
+  become: yes
+  apt:
+    name={{ item }}
+    state=present
+    update_cache=yes
+    cache_valid_time=3600
+  with_items:
+    - samba
+    - smbclient
+
+- name: install samba configuration
+  become: yes
+  template:
+    src=smb.conf.j2
+    dest=/etc/samba/smb.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: restart samba
+
+- name: install samba shares
+  become: yes
+  template:
+    src=shares.conf.j2
+    dest=/etc/samba/shares.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: restart samba
+
+- name: add shares group
+  become: yes
+  group:
+    name=shares
+    state=present
+
+- name: add system users for samba users
+  become: yes
+  user:
+    name="samba-{{ item.name }}"
+    comment="Samba user {{ item.name }}"
+    group="shares"
+    shell="/bin/false"
+    state=present
+  with_items:
+    samba_users
+  no_log: True
+  notify: restart samba
+
+- name: add samba users
+  become: yes
+  shell: (echo {{ item.password }}; echo {{ item.password}})|smbpasswd -s -a samba-{{ item.name }}
+  with_items:
+    samba_users
+  no_log: True
+  notify: restart samba

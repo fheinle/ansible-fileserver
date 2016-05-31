@@ -1,0 +1,19 @@
+[global]
+server string = Stormcage
+guest ok = no
+security = user
+socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65535 SO_SNDBUF=65535
+syslog = 0
+map to guest = bad user
+invalid users = root
+workgroup = WORKGROUP
+{% if restricted_fileserver %}
+interfaces = lan lo
+bind interfaces only = yes
+{% endif %}
+encrypt passwords = true
+log level = 0
+unix extensions = yes
+wide links = yes
+
+include = /etc/samba/shares.conf

@@ -1,0 +1,11 @@
+{% for share in shares %}
+[{{ share.name }}]
+path = {{ share.path }}
+comment = {{ share.name }}
+available = yes
+browsable = yes
+guest ok = no
+writeable = yes
+hide dot files = yes
+
+{% endfor %}
