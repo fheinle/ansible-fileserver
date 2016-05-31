@@ -1,5 +1,6 @@
+# {{ ansible_managed }}
 [global]
-server string = Stormcage
+server string = {{ ansible_hostname }}
 guest ok = no
 security = user
 socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65535 SO_SNDBUF=65535
