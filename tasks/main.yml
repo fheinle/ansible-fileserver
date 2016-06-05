@@ -50,17 +50,12 @@
     name="samba-{{ item.name }}"
     comment="Samba user {{ item.name }}"
     group="shares"
+    groups="shares"
     shell="/bin/false"
     state=present
   with_items:
     samba_users
   no_log: True
-  notify: restart samba
-
-- name: add samba users
-  become: yes
-  shell: (echo {{ item.password }}; echo {{ item.password}})|smbpasswd -s -a samba-{{ item.name }}
-  with_items:
-    samba_users
-  no_log: True
-  notify: restart samba
+  notify:
+    - add samba users
+    - restart samba
