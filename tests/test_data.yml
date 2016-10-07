@@ -1,0 +1,5 @@
+samba_shares:
+  - {'name': 'bla', 'path':'/tmp'}
+
+samba_users:
+  - {'name':'bla', 'password':'nonethatmatters'}
