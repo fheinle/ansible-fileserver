@@ -2,6 +2,6 @@
 - hosts: localhost
   remote_user: root
   vars_files:
-    - tests/test_data.yml
+    - test_data.yml
   roles:
     - ansible-kodi
