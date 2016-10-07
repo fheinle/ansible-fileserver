@@ -32,3 +32,13 @@ You should really use [Ansible's vault](http://docs.ansible.com/ansible/playbook
 ## Usage
 
 This creates both system and samba users prefixed with ``samba-``, i.e. ``admin`` in config becomes ``samba-admin`` to avoid name conflicts.
+
+## Build status
+
+[![Build Status](https://travis-ci.org/fheinle/ansible-fileserver.svg?branch=master)](https://travis-ci.org/fheinle/ansible-fileserver)
+
+## Copyright
+
+Copyright (c) 2016 Florian Heinle <launchpad@planet-tiax.de>
+
+MIT License
