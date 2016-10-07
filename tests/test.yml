@@ -4,4 +4,4 @@
   vars_files:
     - test_data.yml
   roles:
-    - ansible-kodi
+    - ansible-fileserver
