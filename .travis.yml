@@ -22,7 +22,7 @@ script:
   - "ansible-playbook -i tests/inventory tests/test.yml --connection=local"
 
   - test -x /usr/sbin/smbd
-  - grep -q "Ansible managed" /etc/samba/smbd.conf
+  - grep -qi "ansible managed" /etc/samba/smb.conf
   - test -f /etc/samba/smb.conf
   - grep -q shares /etc/group
   - grep -q "samba-bla" /etc/passwd
