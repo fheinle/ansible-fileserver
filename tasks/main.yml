@@ -53,8 +53,7 @@
     groups="shares"
     shell="/bin/false"
     state=present
-  with_items:
-    samba_users
+  with_items: "{{ samba_users }}"
   no_log: True
   notify:
     - add samba users
